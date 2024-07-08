@@ -1,0 +1,11 @@
+name: graph_matching
+channels:
+  - defaults
+dependencies:
+  - python
+  - pip
+  - pip:
+    - numpy
+    - matplotlib
+    - networkx
+

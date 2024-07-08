@@ -1,0 +1,6 @@
+/data/*
+/data_new_struct/*
+
+
+# Ignore compiled Python files
+*.pyc
