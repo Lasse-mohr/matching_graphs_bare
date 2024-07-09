@@ -66,11 +66,16 @@ class NetworkLoader:
         else:
             raise StopIteration
 
+def compute_mean_network(loader: NetworkLoader):
+    array_stack = np.stack([network for _, network in loader], axis=0)
+    return np.mean(array_stack, axis=0)
+
 # Example use
 if __name__ == '__main__':
     atlases = ['Glasser', 'Schaefer1000']
     structure_types = ['task-rest', 'ses-01']
 
+    # loading the different type of networks
     for atlas in atlases:
         for structure_type in structure_types:
 
@@ -82,3 +87,6 @@ if __name__ == '__main__':
                 break
             
             print('')
+
+    # computing the mean network given a loader
+    mean_network = compute_mean_network(loader=loader)
