@@ -1,5 +1,6 @@
 /data/*
 /data_new_struct/*
+environment_network_plot.yml
 
 
 # Ignore compiled Python files

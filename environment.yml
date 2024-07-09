@@ -2,17 +2,15 @@ name: graph_matching
 channels:
   - defaults
 dependencies:
-  - python=3.11
+  - python
   - pip
   - pip:
     - numpy
     - matplotlib
-    - networkx==2.8.8
+    - networkx
     - jupyterlab
     - ipykernel
     - jupyterlab
     - ipython
     - ipykernel
-    - scipy==1.10.1
-    - umap-learn
-    - nodevectors
+    - scipy
