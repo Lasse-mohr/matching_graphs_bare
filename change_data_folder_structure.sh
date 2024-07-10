@@ -1,10 +1,17 @@
 #!/bin/bash
 
 # Create the base directory
-mkdir -p data_test
+mkdir -p data_new_struct
+
+# Create the atlases directory
+mkdir -p data_new_struct/atlas_coordinates
+
+# Copy the coordinate files to the atlases directory
+cp coordinates_Schaefer2.npy data_new_struct/atlas_coordinates/
+cp coordinates_Gla358.npy data_new_struct/atlas_coordinates/
 
 # Loop through each user directory
-for user_dir in data_old_format/sub-*; do
+for user_dir in data/sub-*; do
     user_id=$(basename $user_dir)
     
     # Loop through each file of interest

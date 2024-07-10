@@ -19,12 +19,20 @@ class NetworkLoader:
 
         self.base_dir = base_dir
         self.atlas = atlas
+        self.atlas_coordinates = self._load_atlas_coord_()
         self.structure_type = structure_type
         self.seed = seed
         self.rng = np.random.default_rng(seed)
         self.file_list = self._collect_files()
         self.index = 0
 
+    def _load_atlas_coord_(self):
+        if self.atlas == 'Schaefer1000':
+            atlas_path = os.path.join(self.base_dir, 'atlas_coordinates/coordinate_Schaefer2.npy')
+        elif self.atlas == 'Glasser':
+            atlas_path = os.path.join(self.base_dir, 'atlas_coordinates/coordinates_Gla358.npy')
+
+        return np.load(atlas_path)
 
     def _collect_files(self):
         """
@@ -66,8 +74,26 @@ class NetworkLoader:
         else:
             raise StopIteration
 
+def compute_median_network(loader: NetworkLoader):
+    # loader is used as an iterator, so we need a copy with the full list of networks
+    loader_copy = NetworkLoader(
+        atlas=loader.atlas,
+        structure_type=loader.structure_type,
+        seed=loader.seed,
+        base_dir=loader.base_dir,
+        )
+    array_stack = np.stack([network for _, network in loader_copy], axis=0)
+    return np.median(array_stack, axis=0)
+
 def compute_mean_network(loader: NetworkLoader):
-    array_stack = np.stack([network for _, network in loader], axis=0)
+    # loader is used as an iterator, so we need a copy with the full list of networks
+    loader_copy = NetworkLoader(
+        atlas=loader.atlas,
+        structure_type=loader.structure_type,
+        seed=loader.seed,
+        base_dir=loader.base_dir,
+        )
+    array_stack = np.stack([network for _, network in loader_copy], axis=0)
     return np.mean(array_stack, axis=0)
 
 # Example use

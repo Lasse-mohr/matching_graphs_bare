@@ -1,16 +1,16 @@
-name: graph_matching
+name: graph_matching2
 channels:
   - defaults
 dependencies:
   - python
   - pip
   - pip:
-    - numpy
+    - numpy==1.26.4
     - matplotlib
-    - networkx
     - jupyterlab
     - ipykernel
     - jupyterlab
     - ipython
     - ipykernel
     - scipy
+    - fugw
