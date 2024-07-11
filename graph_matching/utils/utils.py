@@ -1,6 +1,7 @@
 from scipy.optimize import linear_sum_assignment
 import numpy as np
 
+
 def double_stochastic_array_to_permuation(double_stoch_array):
     """ 
     Function for finding the permutation matrix closest to given
@@ -11,6 +12,7 @@ def double_stochastic_array_to_permuation(double_stoch_array):
     """
     _, col = linear_sum_assignment(double_stoch_array, maximize=True)
     return col
+
 
 def compute_displacements(atlas_coord, node_permutations: list):
     """
@@ -33,5 +35,4 @@ def compute_displacements(atlas_coord, node_permutations: list):
                     for node_permutation in node_permutations 
                 ]
             )
-
 

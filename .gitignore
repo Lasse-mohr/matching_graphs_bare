@@ -1,6 +1,7 @@
 /data/*
 /data_new_struct/*
 environment_network_plot.yml
+/exploration/fugw_test.ipynb
 
 
 # Ignore compiled Python files

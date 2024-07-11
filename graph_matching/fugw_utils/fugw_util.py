@@ -1,7 +1,7 @@
 from fugw.mappings import FUGW
 import numpy as np
 
-def init_and_train_vanilla_fugw(
+def init_and_train_fugw(
                     atlas_coord,
                     network_1,
                     network_2,
@@ -38,4 +38,19 @@ def init_and_train_vanilla_fugw(
         verbose=True,
     )
 
-    return mapping.pi
+    return mapping
+
+
+
+
+def compute_ratio_fugw(subject_network, mean_network, atlas_coord, kwargs):
+    res = init_and_train_fugw(
+                            atlas_coord=atlas_coord,
+                            network_1=subject_network,
+                            network_2=mean_network,
+                            **kwargs
+                            )
+
+    loss_values = res.loss['total']
+    ratio = loss_values[0]/loss_values[-1]
+    return ratio
